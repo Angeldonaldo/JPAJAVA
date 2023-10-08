@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 @Entity
 @Table(name = "clientes")
@@ -26,7 +27,11 @@ public class Cliente implements Serializable {
 	private Date createAt;
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@PrePersist
+	public void prePersit() {
+		createAt = new Date();
+	}
 	public Long getId() {
 		return id;
 	}
